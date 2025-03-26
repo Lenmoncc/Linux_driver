@@ -21,18 +21,16 @@ __used
 __attribute__((section("__versions"))) = {
 	{ 0xfa985410, __VMLINUX_SYMBOL_STR(module_layout) },
 	{ 0x51204841, __VMLINUX_SYMBOL_STR(platform_driver_unregister) },
+	{ 0x866a30ed, __VMLINUX_SYMBOL_STR(uart_unregister_driver) },
 	{ 0xda113ac9, __VMLINUX_SYMBOL_STR(__platform_driver_register) },
-	{ 0x5d5890a1, __VMLINUX_SYMBOL_STR(device_create) },
-	{ 0x3c8c7d13, __VMLINUX_SYMBOL_STR(__class_create) },
-	{ 0xfeb25d8b, __VMLINUX_SYMBOL_STR(cdev_add) },
-	{ 0xb6828306, __VMLINUX_SYMBOL_STR(cdev_init) },
-	{ 0x29537c9e, __VMLINUX_SYMBOL_STR(alloc_chrdev_region) },
+	{ 0xd0320518, __VMLINUX_SYMBOL_STR(uart_register_driver) },
+	{ 0xe28823ad, __VMLINUX_SYMBOL_STR(uart_add_one_port) },
+	{ 0xfa2a45e, __VMLINUX_SYMBOL_STR(__memzero) },
+	{ 0x93e3940, __VMLINUX_SYMBOL_STR(devm_kmalloc) },
+	{ 0x40a6d9af, __VMLINUX_SYMBOL_STR(dev_err) },
+	{ 0x5b53e25a, __VMLINUX_SYMBOL_STR(uart_remove_one_port) },
 	{ 0xefd6cf06, __VMLINUX_SYMBOL_STR(__aeabi_unwind_cpp_pr0) },
 	{ 0x27e1a049, __VMLINUX_SYMBOL_STR(printk) },
-	{ 0x7485e15e, __VMLINUX_SYMBOL_STR(unregister_chrdev_region) },
-	{ 0xb37da9a1, __VMLINUX_SYMBOL_STR(cdev_del) },
-	{ 0x495be299, __VMLINUX_SYMBOL_STR(class_destroy) },
-	{ 0x43c34b68, __VMLINUX_SYMBOL_STR(device_destroy) },
 };
 
 static const char __module_depends[]
@@ -40,6 +38,6 @@ __used
 __attribute__((section(".modinfo"))) =
 "depends=";
 
-MODULE_ALIAS("of:N*T*Cmyvendor,hello-char*");
+MODULE_ALIAS("of:N*T*Cvirtual,virtual_uart*");
 
-MODULE_INFO(srcversion, "FC1EC9C9240C5E3CB926378");
+MODULE_INFO(srcversion, "5BEC35C74196E327382DF8E");

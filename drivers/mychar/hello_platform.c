@@ -3,7 +3,6 @@
 #include <linux/cdev.h>
 #include <linux/fs.h>
 #include <linux/device.h>
-#include <linux/uaccess.h>
 
 #define DRV_NAME "hello_platform"   // platform驱动名称
 #define DEVICE_NAME "hello-char"    //字符设备名称
@@ -12,45 +11,15 @@ static int major;   //存储动态分配的主设备号
 static struct cdev hello_cdev;  //字符设备结构体
 static struct class *hello_class;   //设备类指针
 
-static const char msg[] = "Hello from kernel driver!\n";  
-static int msg_len = sizeof(msg);
-
 // 文件操作函数
 static int hello_open(struct inode *inode, struct file *file) {
     printk(KERN_INFO "hello-char: Device opened\n");
     return 0;
 }
 
-static ssize_t hello_read(struct file *file, char __user *buf, size_t count, loff_t *ppos) {
-    int bytes_left = 0;
-    int bytes_read = 0;
-
-    bytes_left = msg_len - *ppos;
-    if (bytes_left == 0) {
-        return 0;
-    }
-
-    bytes_read = min(count,(size_t)bytes_left);
-    if (copy_to_user(buf, msg + *ppos, bytes_read)) {
-        return -EFAULT;
-    }
-
-    *ppos += bytes_read;
-
-    printk(KERN_INFO "hello-char: Read %d bytes\n",bytes_read);
-    return bytes_read;
-}
-
-static ssize_t hello_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos) {
-    printk(KERN_INFO "hello-char: Write done, %zu bytes received\n", count);
-    return count;
-}
-
 static struct file_operations hello_fops = {
     .owner = THIS_MODULE,
     .open = hello_open,
-    .read = hello_read,
-    .write = hello_write,
 };
 
 // Platform驱动Probe函数
@@ -131,3 +100,5 @@ module_exit(hello_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("zhugaoting");
+MODULE_DESCRIPTION("Platform Driver for Hello-Char Device");
+
