@@ -1,0 +1,2 @@
+kernel/drivers/char/myi2c/i2c_ctl.ko
+kernel/drivers/char/myi2c/i2c_drv.ko
