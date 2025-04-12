@@ -1,0 +1,5 @@
+kernel/drivers/char/myspi/spi_dev.ko
+kernel/drivers/char/myspi/spi_controller.ko
+kernel/drivers/char/myspi/spi_drv.ko
+kernel/drivers/char/myspi/spi_ctl.ko
+kernel/drivers/char/myspi/spi_vdev.ko
