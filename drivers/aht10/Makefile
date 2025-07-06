@@ -1,0 +1,1 @@
+obj-m	 += aht10_dev.o
